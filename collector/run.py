@@ -42,5 +42,39 @@ def main():
     )
     logger.info(f"Export complete. Total {count} recent normal deals stored in {args.parquet_path}.")
 
+    # 3. AI 부동산 애널리스트 일일 브리핑 자동 생성 (GEMINI_API_KEY 설정 시)
+    import os
+    gemini_key = os.environ.get("GEMINI_API_KEY", "").strip()
+    if gemini_key:
+        logger.info("GEMINI_API_KEY detected. Checking recent deal dates for AI analyst briefing...")
+        from analytics.gemini_analyst import GeminiAnalyst
+        analyst = GeminiAnalyst(api_key=gemini_key)
+
+        available_dates = collector.db.get_available_deal_dates(limit=5)
+        for date_info in available_dates:
+            d_date = date_info["deal_date"]
+            if not date_info["has_summary"] and date_info["deal_count"] > 0:
+                logger.info(f"Generating AI Analyst Report for {d_date} ({date_info['deal_count']} deals)...")
+                try:
+                    deals = collector.db.get_deals_by_date(d_date, include_cancelled=False)
+                    if deals:
+                        summary = analyst.generate_daily_analysis(d_date, deals)
+                        max_deal = max(deals, key=lambda x: x.get("deal_amount", 0))
+                        collector.db.save_daily_summary(
+                            deal_date=d_date,
+                            summary=summary,
+                            deal_count=len(deals),
+                            max_price_apt=f"{max_deal['apt_name']} ({max_deal['deal_amount']}만원)",
+                            avg_price=date_info.get("avg_price", 0),
+                            model=analyst.model
+                        )
+                        logger.info(f"AI report generated and saved for {d_date}!")
+                except Exception as ex:
+                    logger.warning(f"Failed to generate AI report for {d_date}: {ex}")
+
+    # 4. 일자별 AI 분석 요약 JSON 내보내기 (Git 커밋 및 배포 동기화용)
+    exported_summaries = collector.db.export_summaries_to_json("data/daily_summaries.json")
+    logger.info(f"Exported {exported_summaries} daily AI summaries to data/daily_summaries.json")
+
 if __name__ == "__main__":
     main()

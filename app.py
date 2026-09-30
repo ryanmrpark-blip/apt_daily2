@@ -210,6 +210,10 @@ with st.sidebar:
     search_keyword = st.text_input("🔎 단지명 또는 법정동 검색", placeholder="예: 은마, 반포동, 자이")
 
     st.markdown("---")
+    st.markdown("### 📑 페이지 이동")
+    st.page_link("pages/1_daily_analysis.py", label="일자별 상세 거래 & AI 분석", icon="📅")
+
+    st.markdown("---")
     st.caption(f"🕒 **데이터 기준 기간**: {min_date} ~ {max_date}")
     st.caption(f"🔄 **최종 수집 일시**: {last_update}")
     st.caption("⚡ **파이프라인**: SQLite ➔ Parquet ➔ DuckDB")
