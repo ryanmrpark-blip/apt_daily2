@@ -1,0 +1,46 @@
+# Python & 가상환경
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# 테스팅 & 캐시
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Streamlit 로컬 설정
+.streamlit/secrets.toml
+
+# 환경변수 및 보안 (API 키 유출 방지)
+.env
+.env.local
+.env.*.local
+*.env
+
+# 문서 및 기획/스펙 (커밋 제외)
+docs/
+
+# AI 에이전트 및 프롬프트 캐시
+.agents/
+
+# SQLite 로컬 데이터베이스 (용량 최적화 및 바이너리 충돌 방지)
+data/*.db
+data/*.db-journal
+data/*.db-shm
+data/*.db-wal
+
+# 에디터 및 IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS 생성 파일
+.DS_Store
+Thumbs.db
+
