@@ -4,8 +4,9 @@ from typing import List, Dict, Any, Optional
 from collector.models import AptDealRecord
 
 class AptDatabase:
-    def __init__(self, db_path: str = "data/apt_sales.db"):
+    def __init__(self, db_path: str = "data/apt_sales.db", auto_sync_json: bool = True):
         self.db_path = str(db_path)
+        self.auto_sync_json = auto_sync_json and ("apt_sales.db" in self.db_path)
         pathlib.Path(self.db_path).parent.mkdir(parents=True, exist_ok=True)
         self._init_db()
 
@@ -58,13 +59,14 @@ class AptDatabase:
         finally:
             conn.close()
 
-        # data/daily_summaries.json이 존재하면 DB로 자동 초기 동기화
-        default_json = pathlib.Path("data/daily_summaries.json")
-        if default_json.exists():
-            try:
-                self.import_summaries_from_json(str(default_json))
-            except Exception:
-                pass
+        # data/daily_summaries.json이 존재하면 DB로 자동 초기 동기화 (운영 DB 전용)
+        if self.auto_sync_json:
+            default_json = pathlib.Path("data/daily_summaries.json")
+            if default_json.exists():
+                try:
+                    self.import_summaries_from_json(str(default_json))
+                except Exception:
+                    pass
 
 
     def insert_records(self, records: List[AptDealRecord]) -> int:
