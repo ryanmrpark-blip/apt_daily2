@@ -6,8 +6,8 @@
     "max_price_apt": "테넌바움294 (121000만원)",
     "avg_price": 32056,
     "model": "gemini-3.5-flash",
-    "created_at": "2026-09-30 21:02:39",
-    "updated_at": "2026-09-30 21:03:37"
+    "created_at": "2026-10-01 21:02:32",
+    "updated_at": "2026-10-01 23:09:30"
   },
   {
     "deal_date": "2026-09-28",
@@ -16,8 +16,8 @@
     "max_price_apt": "신반포2 (460000만원)",
     "avg_price": 36980,
     "model": "gemini-3.1-flash-lite",
-    "created_at": "2026-09-30 21:02:39",
-    "updated_at": "2026-09-30 21:03:37"
+    "created_at": "2026-10-01 21:02:32",
+    "updated_at": "2026-10-01 23:09:30"
   },
   {
     "deal_date": "2026-09-27",
@@ -26,8 +26,8 @@
     "max_price_apt": "다산유승한내들골든뷰 (104800만원)",
     "avg_price": 36362,
     "model": "gemini-3.5-flash",
-    "created_at": "2026-09-30 21:02:39",
-    "updated_at": "2026-09-30 21:03:37"
+    "created_at": "2026-10-01 21:02:32",
+    "updated_at": "2026-10-01 23:09:30"
   },
   {
     "deal_date": "2026-09-26",
@@ -36,8 +36,8 @@
     "max_price_apt": "개포주공7단지 (340000만원)",
     "avg_price": 50060,
     "model": "gemini-3.5-flash",
-    "created_at": "2026-09-30 21:02:39",
-    "updated_at": "2026-09-30 21:03:37"
+    "created_at": "2026-10-01 21:02:32",
+    "updated_at": "2026-10-01 23:09:30"
   },
   {
     "deal_date": "2026-09-25",
@@ -46,7 +46,7 @@
     "max_price_apt": "금강펜테리움2단지 (35500만원)",
     "avg_price": 24633,
     "model": "gemini-3.5-flash",
-    "created_at": "2026-09-30 21:02:39",
-    "updated_at": "2026-09-30 21:03:37"
+    "created_at": "2026-10-01 21:02:32",
+    "updated_at": "2026-10-01 23:09:30"
   }
 ]
